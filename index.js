@@ -68,7 +68,7 @@ app.post("/api/users/:id/exercises", (req, res) => {
           res.send("Could not save exercise");
         } else {
           res.send({
-            id: data._doc.id,
+            _id: data._doc._id,
             username: data._doc.username,
             description: newData.description,
             duration: newData.duration,
@@ -89,10 +89,10 @@ app.get("/api/users/:id/logs", (req, res) => {
     } else {
       let dateFilter = {};
       if (from) {
-        dateFilter["#gte"] = new Date(from);
+        dateFilter["$gte"] = new Date(from);
       }
       if (to) {
-        dateFilter["#lte"] = new Date(to);
+        dateFilter["$lte"] = new Date(to);
       }
       console.log(dateFilter);
       let filter = {
