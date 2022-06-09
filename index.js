@@ -69,8 +69,8 @@ app.post("/api/users/:id/exercises", (req, res) => {
         } else {
           res.send({
             ...data,
-            description,
-            duration,
+            description: newData.description,
+            duration: newData.duration,
             date: newData.date.toDateString(),
           });
         }
@@ -104,7 +104,7 @@ app.get("/api/users/:id/logs", (req, res) => {
 
       let defaultLimit = limit ?? 50;
       Exercise.find(filter)
-        .limit(defaultLimit)
+        .limit(+defaultLimit)
         .exec((err, results) => {
           if (err || !results) {
             res.send([]);
