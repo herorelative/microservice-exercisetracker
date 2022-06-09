@@ -68,11 +68,10 @@ app.post("/api/users/:id/exercises", (req, res) => {
           res.send("Could not save exercise");
         } else {
           res.send({
-            username: data.username,
+            ...data,
             description,
             duration,
             date: newData.date.toDateString(),
-            _id: data.id,
           });
         }
       });
