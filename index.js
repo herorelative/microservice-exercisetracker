@@ -102,7 +102,7 @@ app.get("/api/users/:id/logs", (req, res) => {
       }
       console.log(filter);
 
-      let defaultLimit = limit ?? 50;
+      let defaultLimit = limit ? Number(limit) : 50;
       Exercise.find(filter)
         .limit(+defaultLimit)
         .exec((err, results) => {
